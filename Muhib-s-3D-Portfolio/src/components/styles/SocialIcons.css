@@ -1,0 +1,77 @@
+.icons-section {
+  position: fixed;
+  max-width: var(--cMaxWidth);
+  width: var(--cWidth);
+  bottom: 0;
+  z-index: 99;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.social-icons {
+  position: absolute;
+  left: 0;
+  bottom: 24px;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999;
+  padding: 12px;
+  background: rgba(15, 20, 42, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  border-radius: 30px;
+  pointer-events: auto;
+}
+
+.social-icons a {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #00f0ff;
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 10px #00f0ff);
+}
+
+.resume-button {
+  position: absolute;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  bottom: 28px;
+  right: 0;
+  padding: 10px 18px;
+  background: rgba(15, 20, 42, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 20px;
+  font-family: var(--fontHeading);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: #00f0ff;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+
+.resume-button:hover {
+  background: rgba(0, 240, 255, 0.2);
+  border-color: #00f0ff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+@media only screen and (min-width: 900px) {
+  .social-icons {
+    display: flex;
+  }
+}

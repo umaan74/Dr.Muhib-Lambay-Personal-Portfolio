@@ -1,0 +1,127 @@
+.achievements-section {
+  padding: 100px 0;
+  width: 100%;
+  position: relative;
+}
+
+.achievements-container {
+  width: var(--cWidth);
+  max-width: var(--cMaxWidth);
+  margin: 0 auto;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+}
+
+@media only screen and (min-width: 650px) {
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .achievements-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.achievement-card {
+  padding: clamp(22px, 3vw, 28px);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-3px);
+}
+
+.primary-award {
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.achievement-top-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.achievement-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(6, 10, 24, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.achieve-icon {
+  font-size: 1.5rem;
+}
+
+.achievement-meta-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.achievement-badge {
+  font-family: var(--fontMono);
+  font-size: 0.7rem;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.achievement-badge.badge-gold {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.achievement-period {
+  font-family: var(--fontMono);
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.achievement-body {
+  margin-top: 6px;
+}
+
+.achievement-title {
+  font-family: var(--fontHeading);
+  font-size: 1.12rem;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.achievement-org {
+  font-family: var(--fontBody);
+  font-size: 0.85rem;
+  color: #00e5ff;
+  margin: 0 0 12px 0;
+  font-weight: 500;
+}
+
+.achievement-desc {
+  font-family: var(--fontBody);
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+}

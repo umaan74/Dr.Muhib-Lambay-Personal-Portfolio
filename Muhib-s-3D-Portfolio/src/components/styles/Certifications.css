@@ -1,0 +1,184 @@
+.certifications-section {
+  padding: 100px 0;
+  width: 100%;
+  position: relative;
+}
+
+.certifications-container {
+  width: var(--cWidth);
+  max-width: var(--cMaxWidth);
+  margin: 0 auto;
+}
+
+/* Oracle Featured Card */
+.oracle-featured-card {
+  padding: clamp(24px, 4vw, 36px);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 40px;
+  border-width: 1.5px;
+}
+
+.oracle-left {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  max-width: 850px;
+}
+
+.oracle-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.oracle-icon {
+  font-size: 2.2rem;
+  color: #f59e0b;
+}
+
+.oracle-badge {
+  font-family: var(--fontMono);
+  font-size: 0.72rem;
+  color: #f59e0b;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.oracle-title {
+  font-family: var(--fontHeading);
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  line-height: 1.35;
+}
+
+.oracle-desc {
+  font-family: var(--fontBody);
+  font-size: 0.94rem;
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Grid */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media only screen and (min-width: 650px) {
+  .certifications-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .certifications-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.cert-card {
+  padding: clamp(22px, 3vw, 28px);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 229, 255, 0.4);
+}
+
+.cert-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.cert-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(6, 10, 24, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cert-icon {
+  font-size: 1.4rem;
+}
+
+.cert-number {
+  font-family: var(--fontHeading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.cert-body {
+  margin-bottom: 18px;
+}
+
+.cert-title {
+  font-family: var(--fontHeading);
+  font-size: 1.05rem;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  line-height: 1.35;
+}
+
+.cert-provider-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.provider-prefix {
+  font-family: var(--fontMono);
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.provider-name {
+  font-family: var(--fontBody);
+  font-size: 0.88rem;
+  color: #00e5ff;
+  font-weight: 500;
+}
+
+.cert-footer {
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cert-status-tag {
+  font-family: var(--fontMono);
+  font-size: 0.72rem;
+  color: #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cert-check {
+  color: #00e5ff;
+}

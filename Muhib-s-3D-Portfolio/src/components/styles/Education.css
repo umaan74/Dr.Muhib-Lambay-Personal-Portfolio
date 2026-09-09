@@ -1,0 +1,126 @@
+.education-section {
+  padding: 100px 0;
+  width: 100%;
+  position: relative;
+}
+
+.education-container {
+  width: var(--cWidth);
+  max-width: var(--cMaxWidth);
+  margin: 0 auto;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-top: 40px;
+}
+
+@media only screen and (min-width: 850px) {
+  .education-grid {
+    grid-template-columns: 1.25fr 1fr 1fr;
+  }
+}
+
+.education-card {
+  padding: clamp(26px, 3.5vw, 36px);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-4px);
+}
+
+.phd-card {
+  border-width: 1.5px;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.edu-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.edu-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(6, 10, 24, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edu-icon {
+  font-size: 1.8rem;
+}
+
+.edu-rank-badge {
+  font-family: var(--fontMono);
+  font-size: 0.72rem;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  padding: 4px 12px;
+  border-radius: 14px;
+}
+
+.edu-rank-badge.badge-gold {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.edu-rank-badge.badge-purple {
+  color: #c084fc;
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.edu-card-body {
+  margin-bottom: 26px;
+}
+
+.edu-degree-title {
+  font-family: var(--fontHeading);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.edu-field-name {
+  font-family: var(--fontBody);
+  font-size: 1.05rem;
+  color: #00e5ff;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.edu-card-footer {
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.edu-credential-badge {
+  font-family: var(--fontMono);
+  font-size: 0.74rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.credential-icon {
+  color: #00e5ff;
+}
