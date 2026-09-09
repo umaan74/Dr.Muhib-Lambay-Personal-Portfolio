@@ -6,26 +6,43 @@ import {
   FaPhone, 
   FaCopy, 
   FaCheck,
-  FaPaperPlane,
   FaArrowUpRightFromSquare,
   FaBuildingColumns,
-  FaLinkedin,
-  FaCircleExclamation
+  FaLinkedin
 } from "react-icons/fa6";
-import { SiGooglescholar } from "react-icons/si";
+import { SiGooglescholar, SiGmail } from "react-icons/si";
 import "./styles/Contact.css";
+
+const topics = [
+  {
+    id: "general",
+    label: "General Inquiry",
+    subject: "Academic Inquiry - Dr. Muhib Anwar Lambay",
+    body: "Dear Dr. Muhib Anwar Lambay,\n\nI am reaching out to you with the following academic inquiry:\n\n[Please write your message here]\n\nBest regards,\n[Your Name]\n[Your Institution/Designation]"
+  },
+  {
+    id: "research",
+    label: "Research Collaboration",
+    subject: "Research Collaboration Inquiry - Dr. Muhib Anwar Lambay",
+    body: "Dear Dr. Muhib Anwar Lambay,\n\nI am interested in exploring research collaboration opportunities in Machine Learning / AI / Data Analytics:\n\nArea of Interest: [Specify research topic]\nProposed Scope: [Brief outline]\n\nBest regards,\n[Your Name]\n[Your Institution/Affiliation]"
+  },
+  {
+    id: "workshop",
+    label: "Guest Lecture / Workshop",
+    subject: "Invitation: Guest Lecture / Workshop - Dr. Muhib Anwar Lambay",
+    body: "Dear Dr. Muhib Anwar Lambay,\n\nWe would like to cordially invite you as an expert speaker for an academic session:\n\nEvent / Topic: [Topic Name]\nTarget Audience: [Students / Faculty]\nProposed Dates: [Dates]\n\nBest regards,\n[Your Name]\n[Organization / College Name]"
+  },
+  {
+    id: "mentorship",
+    label: "Student Guidance",
+    subject: "Student Guidance & Mentorship - Dr. Muhib Anwar Lambay",
+    body: "Respected Dr. Muhib Anwar Lambay,\n\nI am reaching out to seek your valuable mentorship and guidance regarding:\n\n[Describe your project or research inquiry]\n\nSincerely,\n[Your Name]\n[Student / Researcher]"
+  }
+];
 
 const Contact = () => {
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
-
-  // Form State
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
-  const [errorMessage, setErrorMessage] = useState("");
-  const [clientOpened, setClientOpened] = useState(false);
+  const [selectedTopic, setSelectedTopic] = useState<string>("general");
 
   const handleCopyEmail = (email: string) => {
     navigator.clipboard.writeText(email);
@@ -33,50 +50,10 @@ const Contact = () => {
     setTimeout(() => setCopiedEmail(null), 2500);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMessage("");
-    setClientOpened(false);
-
-    const trimmedName = formState.name.trim();
-    const trimmedEmail = formState.email.trim();
-    const trimmedMessage = formState.message.trim();
-
-    // 1. Validation
-    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
-      setErrorMessage("Please complete all required fields.");
-      return;
-    }
-
-    if (trimmedName.length < 2) {
-      setErrorMessage("Please enter a valid full name (at least 2 characters).");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(trimmedEmail)) {
-      setErrorMessage("Please enter a valid email address.");
-      return;
-    }
-
-    if (trimmedMessage.length < 10) {
-      setErrorMessage("Message must contain at least 10 characters.");
-      return;
-    }
-
-    // 2. Build mailto URL with dynamic fields
-    const recipient = "lambaymuhib@gmail.com";
-    const subject = encodeURIComponent(`Academic Inquiry from ${trimmedName}`);
-    const body = encodeURIComponent(
-      `Name: ${trimmedName}\nEmail: ${trimmedEmail}\n\nMessage:\n${trimmedMessage}\n\nSource: Dr. Muhib Anwar Lambay Academic Portfolio`
-    );
-
-    const mailtoUrl = `mailto:${recipient}?subject=${subject}&body=${body}`;
-
-    // 3. Directly trigger email client (behaving like WhatsApp redirect)
-    window.location.href = mailtoUrl;
-    setClientOpened(true);
-  };
+  const activeTopic = topics.find((t) => t.id === selectedTopic) || topics[0];
+  const recipient = "lambaymuhib@gmail.com";
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${encodeURIComponent(activeTopic.subject)}&body=${encodeURIComponent(activeTopic.body)}`;
+  const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(activeTopic.subject)}&body=${encodeURIComponent(activeTopic.body)}`;
 
   return (
     <section className="contact-section" id="contact" aria-label="Academic Contact Section">
@@ -250,77 +227,127 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Right Column: Clean Academic Inquiry Form */}
+          {/* Right Column: Direct Email & Gmail Redirect */}
           <div className="contact-form-column">
-            <div className="contact-form-card glass-panel">
-              <h3 className="form-heading">Academic Inquiry</h3>
-              <p className="form-sub">
-                Send an academic message directly to <strong>lambaymuhib@gmail.com</strong>.
-              </p>
+            <div className="email-redirect-card glass-panel">
+              <div className="redirect-card-header">
+                <div className="redirect-badge">
+                  <span className="live-dot"></span>
+                  <span>INSTANT GMAIL REDIRECT</span>
+                </div>
+                <h3 className="redirect-heading">
+                  Direct Email <span className="gradient-text">Redirect</span>
+                </h3>
+                <p className="redirect-sub">
+                  Click below to redirect directly to your Gmail composer with a pre-configured draft addressed to <strong>lambaymuhib@gmail.com</strong> — behaving just like WhatsApp Direct.
+                </p>
+              </div>
 
-              <form onSubmit={handleFormSubmit} className="academic-contact-form" noValidate>
-                {errorMessage && (
-                  <div className="form-error-alert" role="alert">
-                    <FaCircleExclamation className="error-alert-icon" />
-                    <div className="error-alert-text">
-                      <p>{errorMessage}</p>
+              {/* Inquiry Purpose Selector */}
+              <div className="redirect-topics-section">
+                <span className="redirect-label">SELECT INQUIRY PURPOSE (PRE-FILLS YOUR DRAFT):</span>
+                <div className="topic-chips-grid">
+                  {topics.map((topic) => (
+                    <button
+                      key={topic.id}
+                      type="button"
+                      className={`topic-chip ${selectedTopic === topic.id ? "topic-chip-active" : ""}`}
+                      onClick={() => setSelectedTopic(topic.id)}
+                    >
+                      {topic.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="redirect-actions-group">
+                {/* Primary Action: Direct Gmail Web Redirect */}
+                <a
+                  href={gmailUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="redirect-main-btn btn-gmail"
+                  aria-label="Redirect directly to Gmail composer"
+                >
+                  <div className="redirect-btn-left">
+                    <div className="gmail-icon-wrapper">
+                      <SiGmail className="gmail-icon" />
+                    </div>
+                    <div className="redirect-btn-text">
+                      <span className="btn-main-title">REDIRECT TO GMAIL</span>
+                      <span className="btn-sub-title">Launch Gmail in browser with pre-filled draft</span>
                     </div>
                   </div>
-                )}
+                  <FaArrowUpRightFromSquare className="btn-arrow-icon" />
+                </a>
 
-                {clientOpened && !errorMessage && (
-                  <div className="form-notice-box" role="status">
-                    <FaCheck className="notice-icon neon-text-blue" />
-                    <p>
-                      Opening your email client addressed to <strong>lambaymuhib@gmail.com</strong>. If your client did not launch, you can email directly at <a href="mailto:lambaymuhib@gmail.com" className="notice-email-link">lambaymuhib@gmail.com</a>.
-                    </p>
-                  </div>
-                )}
-
-                <div className="form-field">
-                  <label htmlFor="contact-name">Full Name *</label>
-                  <input 
-                    id="contact-name"
-                    type="text" 
-                    placeholder="e.g. Dr. Rajesh Sharma / Sarah Jenkins"
-                    value={formState.name}
-                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    required
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="contact-email">Email Address *</label>
-                  <input 
-                    id="contact-email"
-                    type="email" 
-                    placeholder="e.g. name@university.edu or name@domain.com"
-                    value={formState.email}
-                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                    required
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="contact-message">Message *</label>
-                  <textarea 
-                    id="contact-message"
-                    rows={5}
-                    placeholder="Outline your research collaboration, workshop invitation, student mentorship, or academic inquiry..."
-                    value={formState.message}
-                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                    required
-                  />
-                </div>
-
-                <button 
-                  type="submit" 
-                  className="btn-primary form-submit-btn"
+                {/* Secondary Action: Default System Mail Client */}
+                <a
+                  href={mailtoUrl}
+                  className="redirect-secondary-btn"
+                  aria-label="Open in default mail client"
                 >
-                  <FaPaperPlane />
-                  <span>SEND MESSAGE</span>
-                </button>
-              </form>
+                  <div className="redirect-btn-left">
+                    <div className="mail-icon-wrapper">
+                      <FaEnvelope className="mail-icon neon-text-blue" />
+                    </div>
+                    <div className="redirect-btn-text">
+                      <span className="btn-main-title">OPEN IN DEFAULT MAIL APP</span>
+                      <span className="btn-sub-title">Apple Mail, Outlook, Thunderbird or Mobile</span>
+                    </div>
+                  </div>
+                  <FaArrowUpRightFromSquare className="btn-arrow-icon" />
+                </a>
+              </div>
+
+              {/* Direct Details & One-Click Copy */}
+              <div className="redirect-info-box">
+                <div className="info-box-header">
+                  <span className="info-box-title">DIRECT INBOX DESTINATIONS</span>
+                  <span className="tag-sparkle">⚡ 1-Click Redirect</span>
+                </div>
+
+                <div className="info-address-row">
+                  <div className="info-address-meta">
+                    <span className="info-address-label">Primary:</span>
+                    <span className="info-address-text">lambaymuhib@gmail.com</span>
+                  </div>
+                  <button
+                    type="button"
+                    className="copy-mini-btn"
+                    onClick={() => handleCopyEmail("lambaymuhib@gmail.com")}
+                    title="Copy Personal Email"
+                    aria-label="Copy Personal Email"
+                  >
+                    {copiedEmail === "lambaymuhib@gmail.com" ? (
+                      <span className="copied-tag"><FaCheck /> COPIED!</span>
+                    ) : (
+                      <span className="copy-tag"><FaCopy /> COPY</span>
+                    )}
+                  </button>
+                </div>
+
+                <div className="info-address-row">
+                  <div className="info-address-meta">
+                    <span className="info-address-label">Institutional:</span>
+                    <span className="info-address-text">{portfolioData.personal.emailPrimary}</span>
+                  </div>
+                  <button
+                    type="button"
+                    className="copy-mini-btn"
+                    onClick={() => handleCopyEmail(portfolioData.personal.emailPrimary)}
+                    title="Copy Institutional Email"
+                    aria-label="Copy Institutional Email"
+                  >
+                    {copiedEmail === portfolioData.personal.emailPrimary ? (
+                      <span className="copied-tag"><FaCheck /> COPIED!</span>
+                    ) : (
+                      <span className="copy-tag"><FaCopy /> COPY</span>
+                    )}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
